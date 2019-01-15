@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>construction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        figure {
+            margin: auto;
+            width: min-content;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        #listContainer {
+            height: 500px;
+        }
+        input[type="number"] {
+            display: inline-block;
+            padding: 6px;
+            border-radius: 4px;
+            width: 60px;
+        }
+        li {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid cadetblue;
+        }
+        li:first-child:nth-last-child(n+4):first-child:nth-last-child(-n+8),
+        li:first-child:nth-last-child(n+4):first-child:nth-last-child(-n+8) ~li {
+            
+            background:cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <p><code>width: min-content</code>可以使元素的宽度根据内容中最小固定宽/不能折行的宽度来定；</p>
+    <p><code>width: max-content</code>则相反，根据内容中占据宽度最大的子元素而定；</p>
+    <p><code>width: fit-content</code>与浮动元素的效果相似。</p>
+    <div class="container">
+        <figure>
+            <img src="./images/1-s.jpg" alt="路上-青海湖">
+            <figcaption>
+                这是在青海湖旅行时在车上拍的照片，刚好拍下路边的牦牛和牧民，让这张照片有了暖意和生机。
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="./images/2-s.jpg" alt="路上-青海湖">
+            <figcaption>
+                青海湖的日出。
+            </figcaption>
+        </figure>
+    </div>
+    <div id="listContainer">
+        <p>nth-child, nth-last-child, first-child的组合用法，可以根据兄弟元素数量确定是否选中。</p>
+        <p>
+            <label for="childrenNum">列表中元素个数</label>
+            <input type="number" id="childrenNum"/>
+            当元素个数大于等于4时选中所有；大于8时取消选中：
+            <code></code>
+        </p>
+
+    </div>
+    <script>
+        
+        const doc = document;
+        const container = doc.querySelector("#listContainer");
+        
+        function getList(e) {
+            const num = e.target.value;
+            if (num > 0) {
+                if (container.querySelector("ul")) {
+                    container.removeChild(container.querySelector("ul"));
+                }
+                const ul = doc.createElement("ul");
+                let items = doc.createElement("fragment");
+                for (let i = 1; i <= num; i++) {
+                    const item = doc.createElement("li");
+                    const text = doc.createTextNode(i);
+                    item.appendChild(text);
+                    items.appendChild(item);
+                }
+                ul.appendChild(items);
+                container.appendChild(ul);
+            } else if (num === 0) {
+                if (container.querySelector("ul")) {
+                    container.removeChild(container.querySelector("ul"));
+                }
+            }          
+        }
+
+        const numInput = doc.querySelector("#childrenNum");
+
+        numInput.addEventListener("change", getList);
+
+
+    </script>
+</body>
+</html>

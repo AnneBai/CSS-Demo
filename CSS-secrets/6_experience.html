@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comparison of positioning schemes</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                color: rgb(92, 40, 89);
+                font-size: 16px;
+            }
+            div {
+                width: 220px;
+                height: 150px;
+                margin: 20px;
+                padding: 10px;
+                border-radius: 6px;
+                transition: .3s;
+            }
+            
+            .div3 {
+                width: 360px;
+                border: 2px solid sienna;
+            }
+            button {
+                margin: 2px;
+                padding: 6px 12px;
+                border: none;
+                background-color: rgba(98, 168, 198);
+                border-radius: 4px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            button:hover {
+                background: currentColor, rgba(255,255,255,.5);
+            }
+            :disabled, [disabled], [aria-disabled="true"] {
+                background: #ccc;
+                cursor: not-allowed;
+            }
+            .hideCursor {
+                cursor: none;
+            }
+            .cell {
+                cursor: cell;
+            }
+            .copy {
+                cursor: copy;
+            }
+            .alias {
+                cursor: alias;
+            }
+            .zoomIn {
+                cursor: zoom-in;
+            }
+            .zoomOut {
+                cursor: zoom-out;
+            }
+            .contextMenu {
+                cursor: context-menu;
+            }
+            .div4 {
+                border: 2px solid salmon;
+            }
+            .div4 input[type="checkbox"] + label::before {
+                content: "";
+                display: inline-block;
+                width: .8em;
+                height: .8em;
+                margin-right: .3em;
+                border-radius: .2em;
+                background: silver;
+                text-indent: .05em;
+                line-height: .65;
+            }
+            .div4 input[type="checkbox"]:checked + label::before {
+                content: "\2713";
+                background: yellowgreen;
+            }
+            .div4 input[type="checkbox"]:disabled:checked + label::before {
+                content: "\2713";
+                background: grey;
+                color: #555;
+            }
+            .div4 input[type="checkbox"]:disabled + label::before {
+                content: "";
+                background: grey;
+                color: #555;
+            }
+            .div4 input[type="checkbox"] + label::after {
+                content: "\A";
+                white-space: pre;
+            }
+            .div4 input[type="checkbox"] {
+                position: absolute;
+                clip: rect(0,0,0,0);
+            }
+            .div5 {
+                border: 2px solid sandybrown;
+            }
+        
+            #modal {
+                display: none;
+                position: fixed;
+                margin: auto;
+                top: calc(50vh - 150px);
+                left: 0; right: 0;
+                width: 400px;
+                height: 200px;
+                background: lightgoldenrodyellow;
+                box-shadow: 0 0 0 50vmax rgba(0,0,0,.3);
+                z-index: 1;
+                text-align: center;
+            }
+            #modal.show {
+                display: block;
+            }
+            #closeModal {
+                margin-top: 100px;
+            }
+            dialog::backdrop {
+                background: rgba(0,0,0,.3);
+            }
+
+            .div6 {
+                padding-top: 0;
+                padding-bottom: 0;
+                overflow: auto;
+                background: linear-gradient(white 10px, transparent), radial-gradient(at top, rgba(0,0,0,.2), transparent 70%),
+                linear-gradient(to top, white 10px, transparent), radial-gradient(at bottom, rgba(0,0,0,.2), transparent 70%);
+                background-repeat:  no-repeat;
+                background-size: 100% 10px;
+                background-position: top, top, bottom, bottom;
+                background-attachment: local, scroll, local, scroll;
+                box-shadow: 4px 0 10px -5px #ccc inset, -4px 0 10px -5px #ccc inset;
+                border-radius: 0;
+            }
+            .div6::-webkit-scrollbar {
+                display: none;
+            }
+            .div7 {
+                padding: 0;
+                position: relative;
+                border: 2px solid seagreen;
+                width: 580px;
+                height: 435px;
+                overflow: hidden;
+            }
+            .resizer {
+                border-radius: 0;
+                padding: 0;
+                margin: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 50%;
+                height: 100%;
+                overflow: hidden;
+            }
+            .resizer img {
+                display: block;
+                height: 100%;
+                filter: grayscale(100%);
+            }
+            .div7 input[type="range"] {
+                width: 100%;
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                margin-left: 0;
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+    
+        <div class="div3">
+            <button>正常按钮</button>
+            <button disabled>禁用(not-allowed)光标</button>
+            <button class="hideCursor">隐藏(none)光标</button>
+            <button class="cell">cell光标</button>
+            <button class="copy">copy光标</button>
+            <button class="alias">alias光标</button>
+            <button class="zoomIn">zoom-in光标</button>
+            <button class="zoomOut">zoom-out光标</button>
+            <button class="contextMenu">context-menu光标</button>
+        </div>
+        <div class="div4">
+            <p>自定义复选框样式</p>
+            <input type="checkbox" id="awesome"/>
+            <label for="awesome">Awesome</label>
+            <input type="checkbox" disabled id="awesome1"/>
+            <label for="awesome1">disabled</label>
+            <input type="checkbox" disabled checked id="awesome2"/>
+            <label for="awesome2">disabled, checked</label>
+            <input type="checkbox" checked id="awesome3"/>
+            <label for="awesome3">checked</label>
+        </div>
+        <div class="div5">
+            <p>对话框+遮罩层</p>
+            <button id="maskModal">box-shadow模拟mask</button>
+            <div id="modal">
+                <p>
+                    <span>box-shadow形成的遮罩层</span>
+                    <span>不能阻止与下层元素的交互</span>
+                </p>
+                <button id="closeModal">关闭</button>
+            </div>
+            <button id="dialogBtn">dialog的backdrop伪元素</button>
+            <dialog id="dialog">这是对话框, 可以双击关闭</dialog>
+        </div>
+        <div class="div6">
+            <ul class="list">
+                <li>滚动提示效果</li>
+                <li>代替默认滚动条</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>ES6</li>
+                <li>HTTP</li>
+                <li>Internet</li>
+                <li>React</li>
+                <li>vue</li>
+                <li>Node</li>
+                <li>Browser</li>
+                <li>......</li>
+                <li></li>
+            </ul>
+        </div>
+        <p style="width: 100%; padding-left: 100px;">交互式图片对比</p><br/>
+        <div class="div7">
+            <img class="img" src="./images/1.jpg" alt="对比">
+            <img width="100%" src="./images/1.jpg" alt="原图">
+        </div>
+        
+    <script>
+        const doc = document;
+        // 弹框
+        const modal = doc.querySelector("#modal");
+        function showModal() {
+            modal.classList.add("show");
+            
+        }
+        function closeModal() {
+            modal.classList.remove("show");
+        }
+        doc.querySelector("#maskModal").addEventListener("click", showModal);
+        modal.querySelector("#closeModal").addEventListener("click", closeModal);
+        // dialog
+        const dialog = doc.querySelector("#dialog");
+        doc.querySelector("#dialogBtn").addEventListener("click", function () {
+            dialog.showModal();
+        })
+        doc.querySelector("#dialog").addEventListener("dblclick", function () {
+            dialog.close();
+        });
+
+        // 图片对比
+        const container = doc.querySelector(".div7");
+        const img = container.querySelector(".img");
+        const resizer = doc.createElement("div");
+        resizer.classList.add("resizer");
+        container.insertBefore(resizer, img);
+        resizer.appendChild(img);
+        const range = doc.createElement("input");
+        range.type = "range";
+        range.oninput = function() {
+            resizer.style.width = this.value + "%";
+        }
+        container.appendChild(range);
+    </script>
+    </body>
+</html>

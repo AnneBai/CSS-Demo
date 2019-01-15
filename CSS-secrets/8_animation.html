@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>8_animation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        body {
+            display: flex;
+        }
+        span {
+            display: inline-block;
+            text-align: center;
+        }
+        .container1 {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background: lightgoldenrodyellow;
+            border: 2px solid #444;
+        }
+        
+        .child1 {
+            animation: bounce 3s ease;
+        }
+        .child1-1 {
+            animation: bounce 3s ease-in;
+        }
+        .child1-2 {
+            animation: bounce 3s  ease-out;
+        }
+        .child1-3 {
+            animation: bounce 3s  ease-in-out;
+        }
+        .child1-4 {
+            animation: bounce 3s  linear;
+        }
+        .child1, .child1-1, .child1-2, .child1-3, .child1-4 {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background:slategrey;
+            border: 1px solid #333;
+            border-radius: 50%;
+            text-align: center;
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+        }
+        .container1:hover .child1,
+        .container1:hover .child1-1,
+        .container1:hover .child1-2,
+        .container1:hover .child1-3,
+        .container1:hover .child1-4 {
+            animation-play-state: running;
+        }
+
+        @keyframes bounce {
+            55% {
+                transform: translateY(170px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes circle {
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .child2 {
+            display: block;
+            margin: 12px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-image: url("./images/1-s.jpg");
+            background-position: center; 
+            animation: circle 8s linear;
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+        }
+        .child2:hover {
+            animation-play-state: running;
+        }
+
+        @keyframes line {
+            0% {
+                background-position-x: 0; 
+            }
+            100% {
+                background-position-x: 100%;
+            }
+        }
+        .child3 {
+            display: block;
+            margin: 12px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-image: url("./images/1-s.jpg");
+            background-position: center; 
+            animation: line 6s linear;
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+            animation-direction: alternate;
+        }
+        .child3:hover {
+            animation-play-state: running;
+        }
+
+        @keyframes round {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .container4 {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid #444;
+        }
+        
+        .child4 {
+            display: block;
+            margin: -15px auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background:salmon;
+            border: 1px solid #333;
+            background-position: center;
+            transform-origin: 50% 115px; 
+            animation: round 8s linear;
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+        }
+        .container4:hover .child4 {
+            animation-play-state: running;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>不同速率函数的小球</p>
+        <div class="container1">
+            <span class="child1">hi</span>
+            <span class="child1-1">hi</span>
+            <span class="child1-2">hi</span>
+            <span class="child1-3">hi</span>
+            <span class="child1-4">hi</span>
+        </div>
+    </div>
+    
+    <div>
+        <p>旋转的唱片</p>
+        <div class="container2">
+            <span class="child2"></span>
+        </div>
+    </div>
+    <div>
+        <p>全景式扫镜</p>
+        <div class="container3">
+            <span class="child3"></span>
+        </div>
+    </div>
+    <div>
+        <p>行星运动</p>
+        <div class="container4">
+            <span class="child4">Hi</span>
+        </div>
+    </div>
+    <div>
+        <div class="container5">
+            <span class="child5"></span>
+        </div>
+    </div>
+    
+</body>
+</html>

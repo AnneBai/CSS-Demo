@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            padding-left: calc(50% - 300px);
+        }
+        .container {
+            display: flex;
+        }
+        .child {
+            padding: 4px 8px;
+            width: 100px;
+            height: 24px;
+            background: #444;
+            color: #fff;
+            text-align: center;
+        }
+        code {
+            white-space: pre;
+        }
+        div[class^="center"], div[class^="code"] {
+            margin: 12px;
+            width: 260px;
+            height: 180px;
+            background:lightsalmon;
+            border: 2px solid saddlebrown;
+        }
+        div[class^="code"] {
+            background:lightblue;
+            border: 2px solid saddlebrown;
+        }
+        .center1 {
+            position: relative;
+        }
+        .center1 .child {
+            position: absolute;
+            margin: auto;
+            top:0; bottom:0; left:0; right:0;
+        }
+
+        .center1-1 {
+            position: relative;
+        }
+        .center1-1 .child {
+            position: absolute;
+            top:50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .center2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center3 .child {
+            margin-top: 90px;
+            margin-left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 flex="1">垂直居中的方法</h1>
+    
+    <p>绝对定位-margin:auto, 适用于宽高固定</p>
+    <div class="container">
+        <div class="center1">
+            <div class="child">请把我居中</div>
+        </div>
+        <div class="code1">       
+            <code>
+.center1 {
+    position: relative;
+}
+.center1 .child {
+    position: absolute; margin: auto;
+    top:0; bottom:0; left:0; right:0;
+}
+            </code>
+        </div>
+    </div>
+
+    <p>绝对定位-translate, 适用宽高不固定</p>
+    <div class="container">
+        <div class="center1-1">
+            <div class="child">请把我居中</div>
+        </div>
+        <div class="code1-1">       
+            <code>
+.center1-1 {
+    position: relative;
+}
+.center1-1 .child {
+    position: absolute; top:50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+            </code>
+        </div>
+    </div>
+    
+    <p>flex</p>
+    <div class="container">
+        <div class="center2">
+            <div class="child">请把我居中</div>
+        </div>
+        <div class="code2">
+            <code>
+.center2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+            </code>
+        </div>
+    </div>
+    
+    <p>translate-适用已知父元素高度, 相对视窗垂直居中时可使用vh</p>
+    <div class="container">
+        <div class="center3">
+            <div class="child">请把我居中</div>
+        </div>
+        <div class="code3">
+            <code>
+.center3 .child {
+    margin-top: 90px;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+} 
+            </code>           
+        </div>
+    </div>
+    
+    <p>其他</p>
+    <div class="container">
+        <div class="center4">
+            <div class="child">请把我居中</div>
+        </div>
+        <div class="code4">
+
+        </div>
+    </div>
+</body>
+</html>

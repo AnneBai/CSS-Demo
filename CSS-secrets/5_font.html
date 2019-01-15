@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comparison of positioning schemes</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                color: rgb(92, 40, 89);
+                font-size: 16px;
+            }
+            div {
+                width: 220px;
+                height: 150px;
+                margin: 20px;
+                padding: 10px;
+                border-radius: 6px;
+                transition: .3s;
+            }
+            div:hover {
+                transform: translateY(-2%);
+                box-shadow: 0 2px 5px #aaa;
+            }
+            .div1 {
+                background: lightseagreen;
+            }
+            .div1 p {
+                font-weight: 500;
+                hyphens: auto;
+            }
+            .div2 {
+                background: lightcyan;
+
+            }
+            .div3 {
+                width: 350px;
+                background: lightgreen;
+            }
+            .div3 dd, .div3 dt {
+                display: inline;
+            }
+            .div3 dd {
+                margin: 0;
+                font-weight: bold;
+            }
+            .div3 dd + dt::before {
+                content: "\A";
+                white-space: pre;
+            }
+            .div3 dd + dd::before {
+                content: ", ";
+                white-space: pre;
+            }
+            .div4 {
+                display: block;
+                background: lightpink;
+                background-image: linear-gradient(rgba(255, 255, 255, 0.5) 50%, transparent 0);
+                background-origin: content-box;
+                background-size: auto 3em;
+                line-height: 1.5;          
+            }
+            @font-face {
+                font-family: Ampersand;
+                src: local("Segoe Script"),
+                     local("GoudyOldStyleT-Italic");
+                unicode-range: U+26;
+            }
+            .div5 {
+                background: lightyellow;
+            }
+            .div5 p {
+                font-family: Ampersand, "Impact" , sans-serif;
+                font-size: 18px;
+            }
+            .div6 {
+                background: lightsalmon;
+                text-shadow: 1px 0 lightsalmon, -1px 0 lightsalmon;
+            }
+            .div6 .link-dash {
+                background: linear-gradient(blue, blue) no-repeat;
+                background-size: 100% 1px;
+                background-position: 0 1.2em;
+            }
+            .div6 .link {
+                background: linear-gradient(90deg, red 66%, transparent 0) repeat-x;
+                background-size: .3em 2px;
+                background-position: 0 1.2em;
+            }
+            .div7 {
+                background: rgb(198, 238, 252);
+                text-shadow: 1px 0 rgb(198, 238, 252), -1px 0 rgb(198, 238, 252);
+            }
+            .div7 .link {
+                line-height: 1.5;
+                background: radial-gradient(transparent 30%, #888 0, #888 40%, transparent 0) repeat-x,
+                radial-gradient(transparent 30%, #888 0, #888 40%, transparent 0) repeat-x;
+                background-size: 20px 14px;
+                background-position-x: 0, 10px;
+                background-position-y: 15px;
+            }
+            .div8 {
+                background: rgb(143, 98, 137);
+                color: #333;
+                text-shadow: 0 1px 1px #ccc;
+            }
+            .div9 {
+                background: rgb(78, 50, 67);
+                color: rgb(179, 179, 123);
+                text-shadow: 0 -1px 1px #000;
+            }
+            .div10 {
+                background: lightcoral;
+                color: lightcoral;
+                font-size: 20px;
+                text-shadow: 1px 1px black, -1px 1px black, 1px -1px black, -1px -1px black;
+            }
+            .div11 {
+                background: #333;
+                color: rgb(238, 238, 188);
+                font-size: 20px;
+                text-shadow: 0 0 4px rgb(238, 238, 188);
+                transition: .5s;
+            }
+            .div11:hover {
+                text-shadow: none;
+            }
+            .div12 {
+                background: rgba(98, 168, 198);
+                text-align: center;
+            }
+            .div13 {
+                background: rgba(198, 128, 168);
+                
+            }
+            .div14 {
+                background: rgb(221, 222, 100);
+                font-size: 24px;
+                font-weight: bolder;
+                text-shadow: 1px 1px #555,
+                2px 2px #555,
+                3px 3px #444;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div class="div3">
+            <dl>
+                <dt>Name:</dt>
+                <dd>Lee Verou</dd>
+                
+                <dt>Email:</dt>
+                <dd>lee@verou.me</dd>
+                <dd>lee2@verou.me</dd>
+
+                <dt>Location:</dt>
+                <dd>Earth</dd>
+            </dl>
+        </div>
+        <div class="div4">
+            Keep holding on, 'cause you know we'll make it through.  坚持下去，因为你清楚我们定会撑过难关。<br/>
+            —— <i>Avril Lavigne, "Keep Holding On"</i>
+        </div>
+        <div class="div5">
+            <p>
+                HTML & CSS & JavaScript & Hello World~
+            </p>
+        </div>
+        <div class="div6">
+            <p>
+                <span class="link-dash">All night</span> the boy who is a man <span class="link">watches me dance</span>. He watched me dance.
+            </p>
+        </div>
+        <div class="div7">
+            <p>
+                All night <span class="link">the boy who is a man watches me dance</span>. He watched me dance.
+            </p>
+        </div>
+        <div class="div8">
+            <p>
+                浅色背景上的深色文字
+                All night the boy who is a man watches me dance. He watched me dance.
+            </p>
+        </div>
+        <div class="div9">
+            <p>
+                深色背景上的浅色文字
+                All night the boy who is a man watches me dance. He watched me dance.
+            </p>
+        </div>
+        <div class="div10">
+            <p>
+                空心字 He watched me dance.
+            </p>
+        </div>
+        <div class="div11">
+            <p>
+                发光字 He watched me dance.
+            </p>
+        </div>
+        <div class="div12">
+            <svg width=100 height=100 overflow="visible" viewBox="0 -20 100 100">
+                <path d="M 0,50 a 50,50 0 1,1 0,1 z" id="circle" fill="none"/>
+                <text><textPath xlink:href="#circle">SVG 实现环形字体 He watched me dance</textPath></text>
+            </svg>
+        </div>
+        <div class="div13">
+            <svg width=100 height=100 overflow="visible" viewBox="0 -20 100 100">
+                    <path d="M 0,100 l 40 -100 l 40 100 m 16 0 l 40 -100 l 40 100 m 16 0 l 40 -100" id="any" fill="none"/>
+                    <text><textPath xlink:href="#any">All night the boy who is a man watches me dance. He watched me dance.</textPath></text>
+            </svg>
+        </div>
+        <div class="div14">
+            <p>
+                凸起字 He watched me dance.
+            </p>
+        </div>
+
+    <script>
+    
+
+
+    </script>
+    </body>
+</html>

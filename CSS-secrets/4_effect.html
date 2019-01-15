@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>demos</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                color: #e83;
+                font-size: 12px;
+            }
+            div {
+                width: 240px;
+                height: 180px;
+                margin: 20px;
+                transition-duration: .5s;
+            }
+            div:hover {
+                transform:scale(1.2, 1.2);
+            }
+            .div1 {
+                background: lightblue;
+                border-radius: 10px;
+                box-shadow: 10px 10px 10px #ccc;
+            }
+            .div2 {
+                background: lightcyan;
+                border-radius: 10px;
+                box-shadow: 10px 0 10px #ccc;
+            }
+            .div3 {
+                background: #888;
+                border-radius: 10px;
+                box-shadow: 0 10px 10px #ccc;
+            }
+            .div4 {
+                background: #f7a6a6;
+                border-radius: 10px;
+                box-shadow: 0 10px 0 #ccc;
+            }
+            .div5 {
+                background: rgb(230, 170, 170);
+                border-radius: 10px;
+                box-shadow: -10px -10px 5px #ccc;
+            }
+            .div6 {
+                background: lightseagreen;
+                border-radius: 10px;
+                box-shadow: 0px 10px 10px -5px #ccc;
+            }
+            .div7{
+                position: relative;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .div7::after {
+                content: "";
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                background: lightgoldenrodyellow;
+                transform: skew(-30deg);
+                z-index: -1;
+                box-shadow: 5px 0 5px -5px #ccc, -5px 0 5px -5px #ccc;
+            }
+            .div8 {
+                position: relative;
+            }
+            .div8::before {
+                content: "伪元素文字";
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                transform: rotate(-20deg);
+                border: 10px dashed lightgreen;
+                z-index: -1;
+                filter: drop-shadow(5px 5px 2px #ccc);
+                font-size: 18px;
+                color: black;
+                display: flex;
+                align-items: center;
+            }
+            .div9 {
+                width: 250px;
+                height: 250px;
+                background: rgba(98, 168, 198);
+                transform: rotate(45deg);
+                overflow: hidden;
+
+            }
+            .div9 .img-1 {
+                max-height: 100%;
+                transform: scale(1.42) rotate(-45deg);
+                filter: blur(2px);
+            }
+            .div10 {
+                text-align: center;
+            }
+            .div10 .img-2 {
+                max-width: 100%;
+                clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                transition: 1s clip-path, 1s filter;
+                filter: grayscale(100%);
+            }
+            .div10 .img-2:hover {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                filter: grayscale(0%);
+            }
+            .div11 {
+                width: 300px;
+                height: 240px;
+                background-color: hsl(335, 85%, 79%);
+                transition: .5s background-color;
+            }
+            .div11 .img-3 {
+                max-height: 90%;
+                mix-blend-mode: luminosity;
+            }
+            .div11:hover {
+                background-color: hsl(100, 31%, 69%);
+                transform: none;
+            }
+            .div12 {
+                width: 300px; height: 300px;
+                background: url(images/1.jpg) 0 / cover fixed;
+            }
+            .div12 .p-1 {
+                position: relative;
+                margin: 10% auto;
+                width: 80%; height: 80%;
+                overflow:hidden;
+            }
+            .div12 .p-1::after {
+                background: url(images/1.jpg) 0 / cover fixed;
+                content: "";
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+                background-color: rgba(0,0,0,.5);
+                filter: blur(3px);
+            }
+            .div13 {
+                position: relative;
+                width: 300px; height: 300px;
+            }
+            .div13 .p-2 {
+                position: relative;
+                margin: 10% auto;
+                width: 80%; height: 80%;
+                overflow:hidden;
+            }
+            .div13 .p-2-1 {
+                position: absolute;
+                margin: 0;
+                width: 100%; height: 100%;
+                overflow: hidden;
+                background: url(images/1.jpg) 0 / cover fixed;
+                filter: blur(3px);
+            }
+            .div13 .p-2::before {
+                background: url(images/1.jpg) 0 / cover fixed;
+                content: "";
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+                background-color: rgba(0,0,0,.5);
+                z-index: 1;
+            }
+            .div14 {
+                position: relative;
+                background: rgb(71, 115, 160);
+                border-radius: 4px; 
+            }
+            .div14::before {
+                content: "";
+                background: #ccc;
+                position: absolute;
+                top: 0;
+                right: 0;
+                border: 15px solid;
+                border-color: white white #ccc #ccc;
+                border-radius: 0 0 0 4px;
+            }
+           
+            .div15 {
+                position: relative;
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background: rgb(132, 226, 124);
+                background-image: linear-gradient(to right, transparent 50%, #655 0);
+                overflow: hidden;
+            }
+            @keyframes spin{
+                to {transform: rotate(.5turn)}
+            }
+            @keyframes bg{
+                50% {background: #655}
+            }
+            .div15::before {
+                content: "";
+                position: absolute;
+                top:0; left:50%; bottom:0; right:0;
+                background-color: inherit;
+                transform-origin: left;
+                transform: rotate(.2turn);
+                animation: spin 3s linear infinite, bg 6s step-end infinite;
+                animation-play-state: paused;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="div1">普通阴影box-shadow: 10px 10px 10px #ccc</div>
+        <div class="div2">普通阴影box-shadow: 10px 0 10px #ccc</div>
+        <div class="div3">box-shadow: 0 10px 10px #ccc</div>
+        <div class="div4">box-shadow: 0 10px 0 #ccc</div>
+        <div class="div5">box-shadow: -10px -10px 5px #ccc</div>
+        <div class="div6">扩张半径-单侧阴影 box-shadow: 0 10px 10px -5px #ccc</div>
+        <div class="div7">伪元素;双侧阴影 box-shadow: 5px 0 5px -5px #ccc, -5px 0 5px -5px #ccc</div>
+        <div class="div8">不规则投影-滤镜filter: drop-shadow(元素中文字也会有效果)</div>
+        <div class="div9"><img class="img-1" src="./images/1.jpg"/></div>
+        <div class="div10">clip-path<img class="img-2" src="./images/1.jpg"/></div>
+        <div class="div11">img: mix-blend-mode: luminosity<img class="img-3" src="./images/1.jpg"/></div>
+        <div class="div12"><p class="p-1">毛玻璃效果</p></div>
+        <div class="div13"><p class="p-2-1"></p><p class="p-2">边缘毛玻璃效果</p></div>
+        <div class="div14">折角效果</div>
+        <div class="div15">饼图</div>
+
+    <script>
+    
+
+
+    </script>
+    </body>
+</html>

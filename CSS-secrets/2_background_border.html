@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comparison of positioning schemes</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                color: #e83;
+                font-size: 12px;
+            }
+            div {
+                width: 180px;
+                height: 100px;
+                margin: 20px;
+            }
+            .div1 {
+                background: lightblue;
+                background-clip: padding-box;
+                border: 10px solid hsla(5,20%,80%,.5);
+                outline: 5px solid pink;
+            }
+            .div2 {
+                background: lightcyan;
+                box-shadow: 0 0 0 10px #655, 0 0 0 15px pink, 3px 3px 3px 15px #ccc;
+            }
+            .div3 {
+                background: #888;
+                border-radius: 5px;
+                outline: 1px dashed #eee;
+                outline-offset: -10px;
+            }
+            .div4 {
+                background: #ccc;
+                box-shadow: 0 0 0 5px#555;
+                border-radius: 8px;
+                outline: 10px solid #555;
+            }
+            .div5 {
+                background: linear-gradient(#5af 32%, #478 0, #478 65%, #fa5 0);
+                background-size: 100% 33%;
+                background-repeat: repeat;
+            }
+            .div6 {
+                background: linear-gradient(to right, #5af 32%, #478 0, #478 65%, #fa5 0);
+                background-size: 33% 100%;
+                background-repeat: repeat;
+            }
+            .div7 {
+                background: linear-gradient(45deg, #5af 25%, #fa5 0, #fa5 50%, #5af 0, #5af 75%, #fa5 0);
+                background-size: 30px 30px;
+                background-repeat: repeat;
+            }
+            .div8 {
+                background: repeating-linear-gradient(60deg, #fa5, #fa5 15px, #5af 0, #5af 30px);
+            }
+            .div9 {
+                background: rgba(98, 168, 198);
+                background-image: repeating-linear-gradient(60deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), 15px, transparent 0, transparent 30px);
+            }
+            .div10 {
+                background: rgba(98, 168, 198);
+                background-image: repeating-linear-gradient(60deg, rgba(255, 255, 255, .3), rgba(255, 255, 255, .3), 15px, transparent 0, transparent 30px);
+            }
+            .div11 {
+                background: rgba(98, 168, 198);
+                background-image: repeating-linear-gradient(30deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), 15px, transparent 0, transparent 30px),
+                repeating-linear-gradient(120deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1), 15px, transparent 0, transparent 30px);
+            }
+            .div12 {
+                background: rgba(98, 168, 198);
+                background-image: repeating-linear-gradient(30deg, #ccc, #ccc, 1px, transparent 0, transparent 30px),
+                repeating-linear-gradient(120deg, #ccc, #ccc, 1px, transparent 0, transparent 30px);
+            }
+            .div13 {
+                background: rgba(98, 128, 168);
+                background-image: radial-gradient(yellow 30%, transparent 0);
+                background-size: 20px 20px;
+            }
+            .div14 {
+                background-image: linear-gradient(white, white), repeating-linear-gradient(120deg, rgb(16, 84, 173) 0, rgb(16, 84, 173) 10px, white 0, white 20px, rgb(200, 84, 16) 0, rgb(200, 84, 16) 30px, white 0, white 40px);
+                background-clip: padding-box, border-box;
+                border: 5px solid transparent;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="div1">background-clip: padding-box; 内部背景不会延申到padding</div>
+        <div class="div2">box-shasow 多重边框</div>
+        <div class="div3">outline-offset 缝线效果</div>
+        <div class="div4">内圆外方-outline无圆角</div>
+        <div class="div5">条纹背景-横-渐变</div>
+        <div class="div6">条纹背景-纵</div>
+        <div class="div7">条纹背景-斜</div>
+        <div class="div8">条纹背景-角度重复</div>
+        <div class="div9">条纹背景-同色系</div>
+        <div class="div10">条纹背景-同色系</div>
+        <div class="div11">条纹背景-格子</div>
+        <div class="div12">条纹背景-格子</div>
+        <div class="div13">条纹背景-波点</div>
+        <div class="div14">条纹背景-边框</div>
+
+    <script>
+    
+
+
+    </script>
+    </body>
+</html>
